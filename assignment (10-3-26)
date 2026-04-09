@@ -1,0 +1,161 @@
+/* =========================================================
+SQL Assignment: Practice Questions (D11R)
+Topic: Data Retrieval, Filtering, and Special Operators
+Date: 10-03-2026
+Instructor: Vamsi Enduri
+=========================================================
+*/
+
+-- 1. Table Creation with Constraints
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50) NOT NULL,
+    age INT CHECK(age >= 18),
+    gender VARCHAR(10) CHECK(gender IN ('Male','Female')),
+    department VARCHAR(50) NOT NULL,
+    salary INT CHECK(salary > 20000),
+    city VARCHAR(50) DEFAULT 'Hyderabad',
+    experience INT CHECK(experience >= 0)
+);
+
+-- 2. Data Insertion
+INSERT INTO Employees VALUES
+(1,'Rahul',25,'Male','IT',45000,'Hyderabad',2),
+(2,'Anjali',30,'Female','HR',52000,'Bangalore',5),
+(3,'Kiran',28,'Male','Finance',48000,'Chennai',4),
+(4,'Sneha',26,'Female','IT',60000,'Hyderabad',3),
+(5,'Arjun',35,'Male','Admin',40000,'Mumbai',8),
+(6,'Pooja',29,'Female','IT',70000,'Delhi',6),
+(7,'Ravi',32,'Male','Finance',55000,'Hyderabad',7),
+(8,'Divya',24,'Female','HR',35000,'Chennai',1),
+(9,'Vikram',31,'Male','IT',62000,'Bangalore',5),
+(10,'Neha',27,'Female','Finance',47000,'Mumbai',3),
+(11,'Suresh',40,'Male','Admin',38000,'Delhi',12),
+(12,'Lavanya',23,'Female','IT',42000,'Hyderabad',1),
+(13,'Karthik',29,'Male','HR',50000,'Bangalore',4),
+(14,'Meena',34,'Female','Finance',65000,'Chennai',8),
+(15,'Ramesh',37,'Male','Admin',36000,'Hyderabad',10),
+(16,'Priya',26,'Female','IT',48000,'Mumbai',3),
+(17,'Harish',33,'Male','Finance',53000,'Delhi',6),
+(18,'Swathi',22,'Female','HR',32000,'Hyderabad',1),
+(19,'Manoj',31,'Male','IT',61000,'Bangalore',5),
+(20,'Deepika',28,'Female','Finance',46000,'Chennai',3),
+(21,'Sanjay',36,'Male','Admin',41000,'Mumbai',9),
+(22,'Keerthi',24,'Female','IT',43000,'Hyderabad',2),
+(23,'Ajay',30,'Male','HR',49000,'Delhi',4),
+(24,'Bhavana',27,'Female','Finance',52000,'Bangalore',4),
+(25,'Mahesh',38,'Male','Admin',37000,'Chennai',11),
+(26,'Nisha',29,'Female','IT',68000,'Mumbai',6),
+(27,'Prakash',35,'Male','Finance',56000,'Hyderabad',8),
+(28,'Asha',23,'Female','HR',34000,'Bangalore',1),
+(29,'Rohit',32,'Male','IT',64000,'Delhi',7),
+(30,'Kavya',26,'Female','Finance',47000,'Chennai',3),
+(31,'Sunil',39,'Male','Admin',39000,'Hyderabad',12),
+(32,'Anitha',25,'Female','IT',45000,'Mumbai',2),
+(33,'Varun',28,'Male','Finance',50000,'Bangalore',4),
+(34,'Lakshmi',31,'Female','HR',36000,'Chennai',5),
+(35,'Naveen',34,'Male','IT',62000,'Delhi',7),
+(36,'Geetha',27,'Female','Finance',48000,'Hyderabad',3),
+(37,'Kishore',36,'Male','Admin',42000,'Mumbai',10),
+(38,'Sarika',24,'Female','IT',44000,'Bangalore',2),
+(39,'Teja',29,'Male','Finance',51000,'Chennai',5),
+(40,'Reshma',28,'Female','HR',37000,'Delhi',3),
+(41,'Gopal',41,'Male','Admin',40000,'Hyderabad',13),
+(42,'Ritika',26,'Female','IT',47000,'Mumbai',3),
+(43,'Aravind',33,'Male','Finance',55000,'Bangalore',6),
+(44,'Sowmya',25,'Female','HR',35000,'Chennai',2),
+(45,'Venu',37,'Male','IT',63000,'Delhi',9),
+(46,'Madhu',30,'Female','Finance',52000,'Hyderabad',5),
+(47,'Tarun',34,'Male','Admin',38000,'Mumbai',8),
+(48,'Pallavi',27,'Female','IT',46000,'Bangalore',4),
+(49,'Nikhil',31,'Male','Finance',54000,'Chennai',6),
+(50,'Shreya',24,'Female','HR',33000,'Delhi',1);
+
+-- 3. Practice Queries
+
+-- Q1: Employees who earn more than 60,000 salary
+SELECT * FROM Employees WHERE salary > 60000;
+
+-- Q2: Employees who are younger than 28 years
+SELECT * FROM Employees WHERE age < 28;
+
+-- Q3: Employees who work in the IT department
+SELECT * FROM Employees WHERE department = 'IT';
+
+-- Q4: Employees who have more than 5 years of experience
+SELECT * FROM Employees WHERE experience > 5;
+
+-- Q5: Employees whose salary is <= 40,000
+SELECT * FROM Employees WHERE salary <= 40000;
+
+-- Q6: Employees working in Hyderabad city
+SELECT * FROM Employees WHERE city = 'Hyderabad';
+
+-- Q7: Older than 30 and in Finance department
+SELECT * FROM Employees WHERE age > 30 AND department = 'Finance';
+
+-- Q8: Working in HR or Admin department
+SELECT * FROM Employees WHERE department IN ('HR', 'Admin');
+
+-- Q9: Employees not working in the IT department
+SELECT * FROM Employees WHERE department != 'IT';
+
+-- Q10: Salary between 45,000 and 60,000
+SELECT * FROM Employees WHERE salary BETWEEN 45000 AND 60000;
+
+-- Q11: Employees who live in Hyderabad or Bangalore
+SELECT * FROM Employees WHERE city IN ('Hyderabad', 'Bangalore');
+
+-- Q12: Name starts with letter "R"
+SELECT * FROM Employees WHERE emp_name LIKE 'R%';
+
+-- Q13: Experience between 3 and 7 years
+SELECT * FROM Employees WHERE experience BETWEEN 3 AND 7;
+
+-- Q14: Department is either IT or Finance
+SELECT * FROM Employees WHERE department IN ('IT', 'Finance');
+
+-- Q15: Name ends with letter "a"
+SELECT * FROM Employees WHERE emp_name LIKE '%a';
+
+-- Q16: Older than 30 and earning more than 50,000
+SELECT * FROM Employees WHERE age > 30 AND salary > 50000;
+
+-- Q17: IT department and at least 3 years experience
+SELECT * FROM Employees WHERE department = 'IT' AND experience >= 3;
+
+-- Q18: Working in Bangalore and earning more than 55,000
+SELECT * FROM Employees WHERE city = 'Bangalore' AND salary > 55000;
+
+-- Q19: Salary between 40,000-60,000 in Finance department
+SELECT * FROM Employees WHERE (salary BETWEEN 40000 AND 60000) AND department = 'Finance';
+
+-- Q20: Younger than 30 but more than 2 years experience
+SELECT * FROM Employees WHERE age < 30 AND experience > 2;
+
+-- Q21: Working in Hyderabad and belong to IT
+SELECT * FROM Employees WHERE city = 'Hyderabad' AND department = 'IT';
+
+-- Q22: Salary > 50,000 and experience > 5 years
+SELECT * FROM Employees WHERE salary > 50000 AND experience > 5;
+
+-- Q23: Name starts with "A" and works in HR
+SELECT * FROM Employees WHERE emp_name LIKE 'A%' AND department = 'HR';
+
+-- Q24: Older than 35 OR more than 10 years experience
+SELECT * FROM Employees WHERE age > 35 OR experience > 10;
+
+-- Q25: Admin department and earn less than 40,000
+SELECT * FROM Employees WHERE department = 'Admin' AND salary < 40000;
+
+-- Q26: Salary between 45,000-70,000 in Chennai city
+SELECT * FROM Employees WHERE (salary BETWEEN 45000 AND 70000) AND city = 'Chennai';
+
+-- Q27: Working in Hyderabad/Delhi with experience > 4 years
+SELECT * FROM Employees WHERE city IN ('Hyderabad', 'Delhi') AND experience > 4;
+
+-- Q28: Name starts with "K" in Finance department
+SELECT * FROM Employees WHERE emp_name LIKE 'K%' AND department = 'Finance';
+
+-- Q29: Between 25-35 years old and in IT department
+SELECT * FROM Employees WHERE age BETWEEN 25 AND 35 AND department = 'IT';
