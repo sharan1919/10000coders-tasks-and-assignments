@@ -1,0 +1,93 @@
+# =========================================================
+# Assignment: Error Handling and File Management
+# Batch: d11r | Instructor: Vamsi Enduri
+# Date: 10-04-2026
+# =========================================================
+
+import datetime
+import os
+
+def log_error(error_message, file_info):
+    """
+    Logs error details to a separate log file with a timestamp.
+    """
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_entry = f"[{timestamp}] FILE: {file_info} | ERROR: {error_message}\n"
+    
+    try:
+        with open("error_log.txt", "a") as log_file:
+            log_file.write(log_entry)
+    except IOError:
+        print("Critical Error: Could not write to log file.")
+
+def process_file_data(input_path, output_path):
+    """
+    Reads data from input_path and writes processed version to output_path.
+    Handles FileNotFoundError, PermissionError, and general IOErrors.
+    """
+    try:
+        # Attempting to read the source file
+        print(f"--- Attempting to process: {input_path} ---")
+        with open(input_path, 'r') as source_file:
+            data = source_file.read()
+            
+        # Simulating data processing (converting to uppercase)
+        processed_data = data.upper()
+        
+        # Attempting to write to the destination file
+        with open(output_path, 'w') as dest_file:
+            dest_file.write(processed_data)
+        
+        print(f"Success: Data moved from {input_path} to {output_path}")
+
+    except FileNotFoundError:
+        msg = "The specified file was not found."
+        print(f"User Error: {msg}")
+        log_error(msg, input_path)
+
+    except PermissionError:
+        msg = "Permission denied. You do not have access to this file/folder."
+        print(f"System Error: {msg}")
+        log_error(msg, input_path)
+
+    except IOError as e:
+        msg = f"An I/O error occurred: {e.strerror}"
+        print(f"Hardware/OS Error: {msg}")
+        log_error(msg, input_path)
+
+    except Exception as e:
+        msg = f"An unexpected error occurred: {e}"
+        print(msg)
+        log_error(msg, "General System")
+
+    finally:
+        print("File operation attempt completed.\n")
+
+# --- Testing Scenarios ---
+
+# Scenario 1: Valid Path (Ensure 'test_input.txt' exists before running)
+# Create a dummy file for testing
+with open("test_input.txt", "w") as f:
+    f.write("python file management test data")
+
+print("TEST 1: Valid File")
+process_file_data("test_input.txt", "test_output.txt")
+
+# Scenario 2: Invalid File Path (Triggers FileNotFoundError)
+print("TEST 2: Missing File")
+process_file_data("non_existent_file.txt", "output.txt")
+
+# Scenario 3: Permission Error (Triggers PermissionError on most OS)
+# Note: Trying to treat a directory as a file often triggers this.
+print("TEST 3: Permission/Directory Error")
+if not os.path.exists("restricted_folder"):
+    os.makedirs("restricted_folder")
+process_file_data("restricted_folder", "output.txt")
+
+# Final check of the log file
+print("--- Error Log Contents ---")
+try:
+    with open("error_log.txt", "r") as logs:
+        print(logs.read())
+except FileNotFoundError:
+    print("No errors were logged.")
