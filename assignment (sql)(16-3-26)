@@ -1,0 +1,102 @@
+-- ---------------------------------------------------------
+-- 🧠 Task 1: Create a Table & Insert Data
+-- ---------------------------------------------------------
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    course VARCHAR(50)
+);
+
+INSERT INTO students (name, course) VALUES
+('Ram','Python'),
+('John','Java'),
+('Sara','React'),
+('Ravi','SQL');
+
+-- ---------------------------------------------------------
+-- 🧠 Task 2: DELETE with Transaction (Rollback)
+-- ---------------------------------------------------------
+SET autocommit = 0; -- Disabling automatic saving
+
+DELETE FROM students WHERE id = 2;
+
+-- Check table: John (ID 2) is missing.
+SELECT * FROM students;
+
+ROLLBACK; -- Undo the deletion
+
+-- Question: 👉 Did the deleted row come back?
+-- Answer: Yes. Because autocommit was off and we didn't COMMIT, 
+--         ROLLBACK restored the data from the last saved state.
+
+-- ---------------------------------------------------------
+-- 🧠 Task 3: COMMIT Example
+-- ---------------------------------------------------------
+DELETE FROM students WHERE id = 3;
+
+COMMIT; -- Save the changes permanently
+
+-- Question: 👉 Can you bring the row back using ROLLBACK?
+-- Answer: No. Once COMMIT is executed, the transaction is finalized. 
+--         The data for Sara (ID 3) is permanently removed.
+
+-- ---------------------------------------------------------
+-- 🧠 Task 4: DELETE Without WHERE
+-- ---------------------------------------------------------
+DELETE FROM students;
+
+-- Check table: The table is now empty.
+SELECT * FROM students;
+
+ROLLBACK; -- Try to undo the mass deletion
+
+-- Question: 👉 What happened to the data?
+-- Answer: The data was restored. Since DELETE is a DML command 
+--         and we are in a transaction (autocommit=0), it can be rolled back.
+
+-- ---------------------------------------------------------
+-- 🧠 Task 5: TRUNCATE
+-- ---------------------------------------------------------
+TRUNCATE TABLE students;
+
+-- Check the table: Empty.
+SELECT * FROM students;
+
+ROLLBACK;
+
+-- Question: 👉 Did the rows come back?
+-- Answer: No. TRUNCATE is a DDL command. DDL commands perform 
+--         an "Implicit Commit," meaning they save automatically and cannot be rolled back.
+
+-- ---------------------------------------------------------
+-- 🧠 Task 6: DROP Table
+-- ---------------------------------------------------------
+DROP TABLE students;
+
+-- Try running:
+-- SELECT * FROM students;
+
+-- Question: 👉 What error do you see?
+-- Answer: Error: Table 'company_db.students' doesn't exist. 
+--         The entire structure and data are gone.
+
+-- ---------------------------------------------------------
+-- 🧠 Task 7: Identify the Command (Scenarios)
+-- ---------------------------------------------------------
+
+/*
+Scenario 1: You want to delete one student record.
+👉 Command: DELETE WITH WHERE clause.
+
+Scenario 2: You want to delete all rows but keep the table structure.
+👉 Command: TRUNCATE (Faster, DDL) or DELETE (DML, can be rolled back).
+
+Scenario 3: You want to remove the entire table from the database.
+👉 Command: DROP TABLE.
+
+Scenario 4: You want to cancel database changes before saving.
+👉 Command: ROLLBACK.
+
+Scenario 5: You want to save all changes permanently.
+👉 Command: COMMIT.
+*/
