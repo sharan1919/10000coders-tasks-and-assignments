@@ -1,0 +1,93 @@
+-- ---------------------------------------------------------
+-- PART 1: SINGLE ROW SUBQUERIES
+-- ---------------------------------------------------------
+
+-- 1. Employees earning more than the company average
+-- Logic: The subquery calculates one value (AVG), and the outer query compares against it.
+SELECT name, salary
+FROM Employees
+WHERE salary > (SELECT AVG(salary) FROM Employees);
+
+-- 2. Employees earning more than their manager (Self-Referencing Subquery)
+-- Logic: Compares each employee's salary against the specific salary of their manager.
+SELECT name, salary
+FROM Employees
+WHERE salary > (
+   SELECT salary
+   FROM Employees m
+   WHERE m.emp_id = Employees.manager_id
+);
+
+-- 3. Employees earning less than the highest salary
+SELECT name, salary
+FROM Employees
+WHERE salary < (SELECT MAX(salary) FROM Employees);
+
+-- 4. Employees earning equal to the lowest salary
+SELECT name, salary
+FROM Employees
+WHERE salary = (SELECT MIN(salary) FROM Employees);
+
+-- 5. Employees earning more than the HR department average
+SELECT name, salary
+FROM Employees
+WHERE salary > (
+   SELECT AVG(salary)
+   FROM Employees
+   WHERE department = 'HR'
+);
+
+-- 6. Find the Second Highest Salary
+-- Logic: Find the maximum salary that is strictly less than the absolute maximum.
+SELECT MAX(salary)
+FROM Employees
+WHERE salary < (SELECT MAX(salary) FROM Employees);
+
+
+-- ---------------------------------------------------------
+-- PART 2: MULTI-ROW SUBQUERIES
+-- ---------------------------------------------------------
+
+-- 1. Using IN
+-- Question: Find employees who work in departments where at least one person earns > 60,000.
+-- Logic: Subquery returns a list (Set) of departments; the outer query checks membership in that set.
+SELECT name, department
+FROM Employees
+WHERE department IN (
+   SELECT department
+   FROM Employees
+   WHERE salary > 60000
+);
+
+-- 2. Using ANY
+-- Question: Find employees whose salary is greater than ANY employee in the HR department.
+-- Logic: "Greater than ANY" means greater than the minimum value in the HR list.
+SELECT name, salary
+FROM Employees
+WHERE salary > ANY (
+   SELECT salary
+   FROM Employees
+   WHERE department = 'HR'
+);
+
+-- 3. Using ALL
+-- Question: Find employees whose salary is greater than ALL employees in the Finance department.
+-- Logic: "Greater than ALL" means greater than the maximum value in the Finance list.
+SELECT name, salary
+FROM Employees
+WHERE salary > ALL (
+   SELECT salary
+   FROM Employees
+   WHERE department = 'Finance'
+);
+
+-- ---------------------------------------------------------
+-- SUMMARY TABLE FOR OPERATORS
+-- ---------------------------------------------------------
+/*
+| Operator | Meaning                                   | Use Case                                  |
+|----------|-------------------------------------------|-------------------------------------------|
+| IN       | Matches any value in the list             | Check membership in a specific group      |
+| ANY      | Matches if condition is true for at least one | Compare against a range (OR logic)     |
+| ALL      | Matches if condition is true for everyone    | Compare against whole group (AND logic) |
+*/
