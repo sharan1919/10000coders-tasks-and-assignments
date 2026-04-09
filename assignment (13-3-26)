@@ -1,0 +1,47 @@
+# =========================================================
+# Assignment: Python Scopes (Global, Local, Enclosed)
+# Batch: d11r | Instructor: Vamsi Enduri
+# =========================================================
+
+# 1. GLOBAL SCOPE
+# Variables defined outside any function are in the global scope.
+# They can be accessed from anywhere in the script.
+
+website = "GitHub"  # Global Variable
+
+def show_global():
+    print(f"Global Scope Example: Accessing {website} inside a function.")
+
+show_global()
+print(f"Global Scope Example: Accessing {website} outside a function.")
+print("-" * 30)
+
+
+# 2. LOCAL SCOPE
+# Variables defined inside a function belong to the local scope of that function.
+# They cannot be accessed once the function finishes execution.
+
+def calculate_sum():
+    local_val = 50  # Local Variable
+    print(f"Local Scope Example: Variable '{local_val}' is only available here.")
+
+calculate_sum()
+# print(local_val) # This would raise a NameError because local_val is not global.
+print("-" * 30)
+
+
+# 3. ENCLOSED (NON-LOCAL) SCOPE
+# This occurs with nested functions. The inner function can access 
+# variables defined in the outer (enclosing) function.
+
+def outer_function():
+    outer_msg = "Hello from Outer"  # Enclosed Variable
+
+    def inner_function():
+        # Accessing variable from the enclosing scope
+        print(f"Enclosed Scope Example: Inner function sees '{outer_msg}'")
+    
+    inner_function()
+
+outer_function()
+print("-" * 30)
