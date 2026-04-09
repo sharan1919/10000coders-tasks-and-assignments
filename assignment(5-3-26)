@@ -1,0 +1,76 @@
+/* =========================================================
+SQL Assignment: Operators (OR, NOT, Special Operators)
+Batch: d11r | Instructor: Vamsi Enduri
+Date: 05-03-2026
+=========================================================
+*/
+
+-- 1. Table Creation
+CREATE TABLE products (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    category VARCHAR(50),
+    brand VARCHAR(50),
+    price DECIMAL(10,2),
+    stock INT,
+    is_available BOOLEAN,
+    rating DECIMAL(2,1)
+);
+
+-- 2. Sample Data Insertion (For Practice)
+INSERT INTO products VALUES 
+(1, 'iPhone 15', 'Electronics', 'Apple', 799.99, 10, true, 4.8),
+(2, 'Galaxy S23', 'Electronics', 'Samsung', 699.99, 5, true, 4.5),
+(3, 'Inspiron 15', 'Laptops', 'Dell', 550.00, 0, false, 4.0),
+(4, 'AirPods Pro', 'Accessories', 'Apple', 249.00, 15, true, 4.7),
+(5, 'Yoga Mat', 'Fitness', 'Generic', 25.00, 50, true, 4.2);
+
+-- ---------------------------------------------------------
+-- 3. Logical Operators: OR & NOT
+-- ---------------------------------------------------------
+
+-- OR Operator: Returns records if any of the conditions are true.
+-- Task: Find products that are either from Apple OR have a price less than 100.
+SELECT * FROM products 
+WHERE brand = 'Apple' OR price < 100;
+
+-- NOT Operator: Displays a record if the condition(s) is NOT true.
+-- Task: Find products that are NOT in the 'Electronics' category.
+SELECT * FROM products 
+WHERE NOT category = 'Electronics';
+
+-- ---------------------------------------------------------
+-- 4. Special Operators: BETWEEN, IN, LIKE, IS NULL
+-- ---------------------------------------------------------
+
+-- BETWEEN: Selects values within a given range (Inclusive).
+-- Task: Find products priced between 500 and 1000.
+SELECT name, price FROM products 
+WHERE price BETWEEN 500 AND 1000;
+
+-- IN: Specify multiple possible values for a column.
+-- Task: Find products belonging to Apple, Samsung, or Dell.
+SELECT * FROM products 
+WHERE brand IN ('Apple', 'Samsung', 'Dell');
+
+-- LIKE: Search for a specified pattern in a column.
+-- (%) represents zero, one, or multiple characters.
+-- Task: Find products that start with the word 'Air'.
+SELECT * FROM products 
+WHERE name LIKE 'Air%';
+
+-- IS NULL / IS NOT NULL: Used to check for empty (NULL) values.
+-- Task: Check for products where the category is listed.
+SELECT * FROM products 
+WHERE category IS NOT NULL;
+
+-- ---------------------------------------------------------
+-- 5. Summary of Learning
+-- ---------------------------------------------------------
+/*
+- OR: Useful for broadening searches (e.g., multiple brands).
+- NOT: Essential for filtering out unwanted data (e.g., out-of-stock items).
+- BETWEEN: Cleaner than using >= AND <= for ranges.
+- IN: Much more readable than writing multiple OR statements.
+- LIKE: Powerful for text-based pattern matching using wildcards.
+*/
