@@ -1,0 +1,75 @@
+```python
+# --- GLOBAL VARIABLES ---
+global_x = "I am Global X"
+global_y = "I am Global Y"
+global_z = "I am Global Z"
+
+def function_one():
+    # Local variable for function_one
+    f1_var = "Inside Function One"
+    print("--- Function One Execution ---")
+    print(f"Accessing Global: {global_x}")
+    print(f"Accessing Local: {f1_var}")
+    # Attempting to access another function's variable would cause a NameError
+    # print(f2_var) # This would fail
+
+def function_two():
+    # Local variable for function_two
+    f2_var = "Inside Function Two"
+    print("\n--- Function Two Execution ---")
+    print(f"Accessing Global: {global_y}")
+    print(f"Accessing Local: {f2_var}")
+
+def function_three():
+    # Local variable for function_three
+    f3_var = "Inside Function Three"
+    print("\n--- Function Three Execution ---")
+    print(f"Accessing Global: {global_z}")
+    print(f"Accessing Local: {f3_var}")
+
+# --- Execution ---
+function_one()
+function_two()
+function_three()
+
+# --- Accessing Function Variables Outside ---
+print("\n--- Testing Outside Access ---")
+print(f"Global Access Check: {global_x} -> Success")
+
+# The following lines are commented out because they will cause NameErrors.
+# In Python, variables created inside a function are destroyed when the function ends.
+# print(f1_var) # ERROR: NameError: name 'f1_var' is not defined
+# print(f2_var) # ERROR: NameError: name 'f2_var' is not defined
+
+Basic Theory Questions
+What is a function in Python? A function is a reusable block of code that performs a specific task. It only runs when it is called.
+
+Why are functions used in programming? Functions promote code reusability, reduce redundancy, make code more organized, and simplify debugging.
+
+What is the syntax for defining a function in Python? def function_name(parameters): followed by an indented block of code.
+
+What is the purpose of the def keyword in Python? The def keyword tells Python that you are about to define a new function.
+
+What is the difference between a function definition and a function call? Definition is creating the logic and structure of the function; a call is the actual execution of that logic.
+
+Intermediate Theory Questions
+What are parameters and arguments in Python functions? Parameters are variables listed in the function definition. Arguments are the actual values passed to the function when it is called.
+
+What is the difference between formal parameters and actual parameters? Formal parameters are placeholders in the function header. Actual parameters are the real values (arguments) sent during the function call.
+
+What is a return statement in a function? The return statement exits a function and sends a result back to the caller.
+
+What happens if a Python function does not have a return statement? The function will automatically return None once it completes its execution.
+
+What are default arguments in Python functions? These are parameters that take a default value if no argument is provided during the function call (e.g., def greet(name="User"):).
+
+Advanced Theory Questions
+What are keyword arguments in Python? Arguments passed by explicitly naming the parameter (e.g., func(age=25, name="Vamsi")), allowing them to be passed in any order.
+
+**What are variable-length arguments (*args and kwargs) in Python functions? *args allows a function to accept any number of positional arguments (as a tuple), and **kwargs allows any number of keyword arguments (as a dictionary).
+
+What is the difference between local variables and global variables in functions? Local variables exist only inside the function they are defined in. Global variables are defined outside functions and can be accessed throughout the script.
+
+What are recursive functions in Python? A function that calls itself to solve a smaller version of the original problem.
+
+What are lambda (anonymous) functions in Python? Small, one-line functions defined without a name using the lambda keyword, typically used for short-term tasks.
