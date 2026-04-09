@@ -1,0 +1,68 @@
+/* =========================================================
+SQL Assignment: DDL (ALTER, RENAME, MODIFY) & DML (UPDATE)
+Batch: d11r | Instructor: Vamsi Enduri
+Date: 10-03-2026
+=========================================================
+*/
+
+-- 1. Initial Table Creation
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    department VARCHAR(50),
+    salary INT
+);
+
+-- 2. Insert 5 Initial Records
+INSERT INTO employees (emp_id, name, age, department, salary) VALUES
+(1, 'Rahul', 25, 'IT', 45000),
+(2, 'Anjali', 30, 'HR', 52000),
+(3, 'Kiran', 28, 'Finance', 48000),
+(4, 'Sneha', 26, 'IT', 60000),
+(5, 'Ravi', 25, 'Admin', 40000);
+
+-- 3. Structure Changes (DDL)
+-- Add new column experience
+ALTER TABLE employees ADD COLUMN experience INT;
+
+-- Rename column name to employee_name
+ALTER TABLE employees RENAME COLUMN name TO employee_name;
+
+-- Change datatype of salary to BIGINT
+ALTER TABLE employees MODIFY COLUMN salary BIGINT;
+
+-- 4. Update Queries (DML)
+-- Update experience for emp_id 3
+UPDATE employees SET experience = 6 WHERE emp_id = 3;
+
+-- Increase salary by 5000 for IT department
+UPDATE employees SET salary = salary + 5000 WHERE department = 'IT';
+
+-- Change department for emp_id 5
+UPDATE employees SET department = 'Sales' WHERE emp_id = 5;
+
+-- Update age of Ravi to 26
+UPDATE employees SET age = 26 WHERE employee_name = 'Ravi';
+
+-- Set experience to 1 where it is NULL
+UPDATE employees SET experience = 1 WHERE experience IS NULL;
+
+-- 5. More Table Changes
+-- Add city column
+ALTER TABLE employees ADD COLUMN city VARCHAR(50);
+
+-- Update city for IT department
+UPDATE employees SET city = 'Hyderabad' WHERE department = 'IT';
+
+-- Increase salary by 10% for experience > 5
+UPDATE employees SET salary = salary * 1.10 WHERE experience > 5;
+
+-- Rename table to company_employees
+RENAME TABLE employees TO company_employees;
+
+-- Delete the city column
+ALTER TABLE company_employees DROP COLUMN city;
+
+-- 6. Final Selection to see Expected Output
+SELECT * FROM company_employees;
