@@ -1,0 +1,74 @@
+# --- 1. ARITHMETIC OPERATORS ---
+# Practicing math operations with user-defined variables
+print("--- 1. Arithmetic Practice ---")
+length = 15
+width = 4
+
+area = length * width        # Multiplication
+perimeter = 2 * (length + width)  # Addition
+division = length / width    # Normal Division (Returns float)
+floor_div = length // width  # Floor Division (Removes decimals)
+remainder = length % width   # Modulus (Finds the leftover)
+
+print(f"Area: {area}, Perimeter: {perimeter}")
+print(f"Float Div: {division}, Integer Div: {floor_div}, Remainder: {remainder}")
+print("-" * 30)
+
+
+# --- 2. TYPE CASTING & INPUT ---
+# Converting input to numbers to perform calculations
+print("--- 2. Casting & Input Practice ---")
+base_val = input("Enter a base number: ") # Input starts as string
+power_val = input("Enter the power: ")
+
+# Type casting strings to integers
+base_int = int(base_val)
+power_int = int(power_val)
+
+result = base_int ** power_int  # Exponentiation
+print(f"{base_int} raised to {power_int} is: {result}")
+print(f"Data type of result: {type(result)}")
+print("-" * 30)
+
+
+# --- 3. COMPARISON OPERATORS ---
+# These return Boolean values (True/False)
+print("--- 3. Comparison Practice ---")
+my_score = 85
+passing_score = 75
+
+is_passed = my_score >= passing_score        # Greater than or equal to
+is_perfect = my_score == 100                 # Equal to
+is_not_failing = my_score != 0               # Not equal to
+
+print(f"Passed? {is_passed}")
+print(f"Perfect Score? {is_perfect}")
+print(f"Did they try? {is_not_failing}")
+print("-" * 30)
+
+
+# --- 4. ASSIGNMENT OPERATORS ---
+# Shorthand ways to update variable values
+print("--- 4. Assignment Practice ---")
+wallet_balance = 500.0
+print(f"Initial Balance: {wallet_balance}")
+
+wallet_balance += 150   # Same as: wallet_balance = wallet_balance + 150
+print(f"After Deposit (+150): {wallet_balance}")
+
+wallet_balance -= 50    # Same as: wallet_balance = wallet_balance - 50
+print(f"After Spending (-50): {wallet_balance}")
+
+wallet_balance *= 1.1   # 10% interest (Multiplication assignment)
+print(f"After Interest (*1.1): {wallet_balance}")
+print("-" * 30)
+
+
+# --- 5. THE TYPE() CHECK ---
+# Verifying that our operators changed types correctly
+final_val = "10.5"
+converted_val = float(final_val)
+
+print("--- Final Type Summary ---")
+print(f"Variable: {final_val} | Type: {type(final_val)}")
+print(f"Variable: {converted_val} | Type: {type(converted_val)}")
