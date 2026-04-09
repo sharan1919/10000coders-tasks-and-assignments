@@ -1,0 +1,71 @@
+-- Assume the following table structures[cite: 1]:
+-- customers: customer_id, name, city [cite: 1]
+-- orders: order_id, customer_id, product_name, amount, order_date [cite: 1]
+
+-- 1. Get customer names and product names for all orders [cite: 1]
+SELECT c.name, o.product_name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id; [cite: 1]
+
+-- 2. Find customers who placed orders with amount greater than 20000 [cite: 1]
+SELECT DISTINCT c.name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.amount > 20000; [cite: 1]
+
+-- 3. Get customer name, city, and product name where city is 'Hyderabad' [cite: 1]
+SELECT c.name, c.city, o.product_name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE c.city = 'Hyderabad'; [cite: 1]
+
+-- 4. Find all orders where product name starts with 'S' and amount is greater than 10000 [cite: 1]
+SELECT o.*
+FROM orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id
+WHERE o.product_name LIKE 'S%' AND o.amount > 10000; [cite: 1]
+
+-- 5. Get customers who ordered products between amount 10000 and 50000 [cite: 1]
+SELECT DISTINCT c.name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.amount BETWEEN 10000 AND 50000; [cite: 1]
+
+-- 6. Find customer names who ordered either 'Laptop' or 'Mobile' [cite: 1]
+SELECT DISTINCT c.name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.product_name IN ('Laptop', 'Mobile'); [cite: 1]
+
+-- 7. Get top 5 highest order amounts with customer names [cite: 1]
+SELECT c.name, o.amount
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+ORDER BY o.amount DESC
+LIMIT 5; [cite: 1]
+
+-- 8. Skip first 5 highest orders and get next 5 records with customer name and amount [cite: 1]
+SELECT c.name, o.amount
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+ORDER BY o.amount DESC
+LIMIT 5 OFFSET 5; [cite: 1]
+
+-- 9. Find customers whose name starts with 'A' and who placed orders greater than 30000 [cite: 1]
+SELECT DISTINCT c.name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE c.name LIKE 'A%' AND o.amount > 30000; [cite: 1]
+
+-- 10. (Advanced) Get customer name, city, product name where:
+-- - city is 'Delhi' OR 'Mumbai'
+-- - amount > 20000
+-- - product name contains 'Pro'
+-- - show only 3 records after skipping first 1 [cite: 1]
+SELECT c.name, c.city, o.product_name
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE c.city IN ('Delhi', 'Mumbai')
+  AND o.amount > 20000
+  AND o.product_name LIKE '%Pro%'
+LIMIT 3 OFFSET 1; [cite: 1]
