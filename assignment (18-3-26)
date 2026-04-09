@@ -1,0 +1,92 @@
+-- ---------------------------------------------------------
+-- 1. Create Table
+-- ---------------------------------------------------------
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    category VARCHAR(30),
+    price INT,
+    stock INT,
+    rating DECIMAL(2,1)
+);
+
+-- ---------------------------------------------------------
+-- 2. Insert Sample Data
+-- ---------------------------------------------------------
+INSERT INTO products VALUES
+(1,'Laptop','Electronics',75000,15,4.5),
+(2,'Mobile','Electronics',25000,40,4.3),
+(3,'Headphones','Electronics',3000,60,4.1),
+(4,'Shoes','Fashion',4000,50,4.2),
+(5,'T-Shirt','Fashion',1200,80,3.9),
+(6,'Watch','Fashion',6000,25,4.4),
+(7,'Refrigerator','Appliances',45000,10,4.6),
+(8,'Microwave','Appliances',8000,18,4.0),
+(9,'Air Conditioner','Appliances',55000,8,4.5),
+(10,'Backpack','Accessories',2000,35,4.2),
+(11,'Keyboard','Electronics',1500,70,4.1),
+(12,'Mouse','Electronics',800,90,4.0);
+
+-- ---------------------------------------------------------
+-- 3. Aggregate Function Tasks (20 Questions)
+-- ---------------------------------------------------------
+
+-- Q1: Total number of products
+SELECT COUNT(*) AS total_products FROM products;
+
+-- Q2: Total stock available
+SELECT SUM(stock) AS total_stock FROM products;
+
+-- Q3: Average price of all products
+SELECT AVG(price) AS average_price FROM products;
+
+-- Q4: Highest price among all products
+SELECT MAX(price) AS max_price FROM products;
+
+-- Q5: Lowest price among all products
+SELECT MIN(price) AS min_price FROM products;
+
+-- Q6: Total number of products in Electronics
+SELECT COUNT(*) FROM products WHERE category = 'Electronics';
+
+-- Q7: Total stock of products in Fashion
+SELECT SUM(stock) FROM products WHERE category = 'Fashion';
+
+-- Q8: Average price of products in Appliances
+SELECT AVG(price) FROM products WHERE category = 'Appliances';
+
+-- Q9: Highest rated product rating
+SELECT MAX(rating) FROM products;
+
+-- Q10: Lowest rating among all products
+SELECT MIN(rating) FROM products;
+
+-- Q11: Number of products with price > 10000
+SELECT COUNT(*) FROM products WHERE price > 10000;
+
+-- Q12: Total stock of products whose price is > 5000
+SELECT SUM(stock) FROM products WHERE price > 5000;
+
+-- Q13: Average rating of Electronics products
+SELECT AVG(rating) FROM products WHERE category = 'Electronics';
+
+-- Q14: Total price of products in Accessories
+SELECT SUM(price) FROM products WHERE category = 'Accessories';
+
+-- Q15: Highest price among Fashion products
+SELECT MAX(price) FROM products WHERE category = 'Fashion';
+
+-- Q16: Lowest price among Electronics products
+SELECT MIN(price) FROM products WHERE category = 'Electronics';
+
+-- Q17: Number of products with rating > 4.3
+SELECT COUNT(*) FROM products WHERE rating > 4.3;
+
+-- Q18: Total stock of products with price < 5000
+SELECT SUM(stock) FROM products WHERE price < 5000;
+
+-- Q19: Average price of products with rating > 4.2
+SELECT AVG(price) FROM products WHERE rating > 4.2;
+
+-- Q20: Number of products with stock > 50
+SELECT COUNT(*) FROM products WHERE stock > 50;
