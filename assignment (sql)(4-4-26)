@@ -1,0 +1,23 @@
+-- Students Table 
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    city VARCHAR(50),
+    gender VARCHAR(10),
+    dob DATE,
+    course_id INT,
+    join_date DATE
+);
+
+-- Courses Table 
+CREATE TABLE Courses (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50),
+    duration_months INT,
+    fees INT,
+    trainer_name VARCHAR(50),
+    mode VARCHAR(20), -- Online / Offline
+    start_date DATE
+);
