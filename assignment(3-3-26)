@@ -1,0 +1,75 @@
+# Python Fundamentals: Data Handling & Operators
+**Batch:** d11r  
+**Instructor:** Vamsi Enduri  
+**Student Notes:** Core concepts on type management and operations.
+
+---
+
+## 1. Checking Data Types: `type()`
+In Python, we don't have to tell the computer what kind of data we are storing (Dynamic Typing). However, to verify what Python "thinks" a variable is, we use the `type()` function.
+
+```python
+x = 10          # <class 'int'>
+y = 10.5        # <class 'float'>
+z = "Hello"     # <class 'str'>
+is_valid = True # <class 'bool'>
+
+print(type(x))
+
+Type Casting (Conversion)
+Type casting is the process of changing a variable from one data type to another. This is crucial when dealing with input(), which always captures data as a string.
+
+Explicit Casting: When we manually convert types.
+
+int("5") ➔ 5
+
+float(10) ➔ 10.0
+
+str(100) ➔ "100"
+
+Example Problem:
+
+Python
+age = input("Enter age: ") # User types 25, but it's stored as "25"
+actual_age = int(age)      # Now it's a number we can do math with
+
+Python Operators
+Operators are used to perform operations on variables and values.
+
+A. Arithmetic Operators
+Used for mathematical calculations.
+| Operator | Name | Example | Result |
+| :--- | :--- | :--- | :--- |
+| + | Addition | 10 + 5 | 15 |
+| - | Subtraction | 10 - 5 | 5 |
+| * | Multiplication | 10 * 5 | 50 |
+| / | Division | 10 / 4 | 2.5 |
+| // | Floor Division | 10 // 4 | 2 |
+| % | Modulus (Remainder) | 10 % 3 | 1 |
+| ** | Exponentiation | 2 ** 3 | 8 |
+
+B. Comparison (Relational) Operators
+Used to compare two values. They always return a Boolean (True or False).
+
+== Equal to
+
+!= Not equal to
+
+> Greater than
+
+< Less than
+
+>= Greater than or equal to
+
+<= Less than or equal to
+
+C. Assignment Operators
+Used to assign values to variables.
+
+= : Standard assignment (x = 5)
+
++= : Add and assign (x += 3 is the same as x = x + 3)
+
+-= : Subtract and assign
+
+*= : Multiply and assign
