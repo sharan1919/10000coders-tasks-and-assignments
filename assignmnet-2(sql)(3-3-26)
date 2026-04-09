@@ -1,72 +1,61 @@
-# Python Advanced Operators and Identity Logic
+# SQL Assignment: Restaurant Database Management
 **Batch:** d11r  
 **Instructor:** Vamsi Enduri  
-**Topic:** Comparison, Logical, and Special Operators
+**Focus:** Table Creation, Data Insertion, and Querying with Operators/Where Clause
 
 ---
 
-## 1. Comparison (Relational) Operators
-Comparison operators are used to compare two values. The result of these operations is always a **Boolean** value: `True` or `False`.
-
-| Operator | Name | Example |
-| :--- | :--- | :--- |
-| `==` | Equal | `5 == 5` (True) |
-| `!=` | Not Equal | `5 != 3` (True) |
-| `>` | Greater than | `10 > 5` (True) |
-| `<` | Less than | `3 < 1` (False) |
-| `>=` | Greater than or equal to | `5 >= 5` (True) |
-| `<=` | Less than or equal to | `2 <= 1` (False) |
+## 1. Project Overview
+This assignment demonstrates the creation of a `FoodItems` database for a restaurant. The goal is to manage various non-veg categories (Chicken, Mutton, Fish, Prawns) and perform data retrieval using logical and arithmetic operators.
 
 ---
 
-## 2. Logical Operators
-Logical operators are used to combine conditional statements. These are the "decision-makers" in Python logic.
+## 2. Database Schema & Data Insertion
 
-* **`and`**: Returns `True` if **both** statements are true. (e.g., `5 > 3 and 10 > 5`)
-* **`or`**: Returns `True` if **at least one** statement is true. (e.g., `5 > 10 or 10 > 5`)
-* **`not`**: Reverse the result; returns `False` if the result is true. (e.g., `not(5 > 3)`)
+```sql
+-- Creating the Table
+CREATE TABLE FoodItems (
+    id INT PRIMARY KEY AUTO_INCREMENT,       -- Unique ID for each food item
+    name VARCHAR(100) NOT NULL,              -- Name of the food item
+    category VARCHAR(50) NOT NULL,           -- Chicken, Mutton, Fish, Prawns
+    price DECIMAL(10,2) NOT NULL,            -- Price of the item
+    type ENUM('Veg','Non-Veg') NOT NULL      -- Food type
+);
 
----
+-- Inserting Records (Humanized Sample Data)
+INSERT INTO FoodItems (name, category, price, type) VALUES 
+('Butter Chicken', 'Chicken', 350.00, 'Non-Veg'),
+('Chicken 65', 'Chicken', 280.00, 'Non-Veg'),
+('Mutton Biryani', 'Mutton', 450.00, 'Non-Veg'),
+('Mutton Rogan Josh', 'Mutton', 480.00, 'Non-Veg'),
+('Fish Fry', 'Fish', 320.00, 'Non-Veg'),
+('Apollo Fish', 'Fish', 380.00, 'Non-Veg'),
+('Prawns Masala', 'Prawns', 420.00, 'Non-Veg'),
+('Garlic Prawns', 'Prawns', 440.00, 'Non-Veg'),
+('Paneer Tikka', 'Veg', 250.00, 'Veg'),
+('Veg Bullets', 'Veg', 180.00, 'Veg');
 
-## 3. Special Operators
-Python includes two sets of special operators that are extremely useful for data validation: **Identity** and **Membership**.
+Task A: Using Comparison Operators
+Query: Fetch all items where the price is greater than 400.
 
-### A. Identity Operators (`is`, `is not`)
-These compare the **memory location** of two objects, not just their values.
-* **`is`**: Returns `True` if both variables point to the same object.
-* **`is not`**: Returns `True` if they point to different objects.
+SQL
+SELECT * FROM FoodItems 
+WHERE price > 400;
+Task B: Using Logical Operators (AND/OR)
+Query: Find items that belong to the 'Chicken' category AND cost less than 300.
 
-### B. Membership Operators (`in`, `not in`)
-These are used to test if a sequence (like a string, list, or tuple) is present in an object.
-* **`in`**: Returns `True` if the value is found in the sequence.
-* **`not in`**: Returns `True` if the value is missing.
+SQL
+SELECT name, price FROM FoodItems 
+WHERE category = 'Chicken' AND price < 300;
+Task C: Using Arithmetic Operators in Queries
+Query: Display the price of items after applying a 10% holiday surcharge.
 
----
+SQL
+SELECT name, price, (price + (price * 0.10)) AS Holiday_Price 
+FROM FoodItems;
+Task D: Filtering Specific Categories
+Query: Show all items related to 'Fish' or 'Prawns'.
 
-## 4. Practical Implementation
-This script demonstrates how to use these operators in a real-world scenario.
-
-```python
-# --- Python Operators Lab ---
-
-# 1. Comparison & Logical Logic
-age = 20
-has_license = True
-
-# Checking if someone is eligible to drive
-can_drive = age >= 18 and has_license
-print(f"Eligibility to drive: {can_drive}")
-
-# 2. Membership Operators
-greet = "Hello, welcome to Python!"
-print(f"Is 'Python' in greeting? {'Python' in greet}")
-print(f"Is 'Java' in greeting? {'Java' in greet}")
-
-# 3. Identity Operators
-list_a = [1, 2, 3]
-list_b = [1, 2, 3]
-list_c = list_a
-
-print(f"Does list_a have same value as list_b? {list_a == list_b}") # True
-print(f"Are list_a and list_b the SAME object? {list_a is list_b}")  # False (Different memory)
-print(f"Are list_a and list_c the SAME object? {list_a is list_c}")  # True (Same memory)
+SQL
+SELECT * FROM FoodItems 
+WHERE category = 'Fish' OR category = 'Prawns';
