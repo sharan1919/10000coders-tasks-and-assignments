@@ -1,0 +1,23 @@
+Part 1: Python Variables
+1. A variable is a named memory location used to store data values that can be referenced and manipulated in a program.
+2. Variables are created by assigning a value to a name using the assignment operator (=). Example: user_score = 100
+3. Variable names must start with a letter or underscore, cannot start with a number, can only contain alphanumeric characters or underscores (A-z, 0-9, _), and are case-sensitive.
+4. Python is a dynamically typed language. This means you do not need to declare the data type explicitly; the type is determined at runtime based on the value assigned.
+5. Yes, a variable can change its data type (re-assignment). Example: x = 10 (int), then x = "Hello" (str).
+6. Multiple variable assignment allows assigning different values to multiple variables in one line. Example: a, b, c = 1, 2, 3
+7. The = operator is for assignment (storing a value), while the == operator is for comparison (checking if two values are equal).
+8. If you use a variable before assigning a value, Python raises a NameError.
+9. You can assign the same value to multiple variables using a chain of assignment operators. Example: x = y = z = 50
+10. Reserved keywords are words with special predefined meanings in Python (e.g., if, while, return). They cannot be used as variable names.
+
+Part 2: Python Data Types
+1. The basic built-in data types include Numeric (int, float, complex), Sequence (str, list, tuple), Mapping (dict), Set (set), and Boolean (bool).
+2. int is for whole numbers, float is for numbers with decimal points, and complex is for numbers with real and imaginary parts (e.g., 3+4j).
+3. A list is ordered and mutable; a tuple is ordered and immutable; a set is unordered, mutable, and contains only unique elements.
+4. A dictionary is a collection of key-value pairs. Example: person = {"name": "Vamsi", "age": 25}
+5. Mutable data types can be changed after creation, whereas immutable data types cannot have their content modified once defined.
+6. Mutable data types in Python are list, dict, and set.
+7. You check the data type of a variable using the built-in type() function.
+8. Type casting is the process of converting one data type into another manually. Examples: int("10") converts string to integer; str(45) converts integer to string.
+9. str() is used to create a readable, "informal" string representation for users; repr() is used to create an "official" string representation for debugging and developers.
+10. The boolean data type represents truth values and contains exactly two values: True and False.
