@@ -1,0 +1,107 @@
+Python List Methods
+Python lists are versatile collections that support a variety of built-in methods for modification and analysis:
+
+Adding Elements:
+
+
+append(): Adds a single item to the end of a list.
+
+extend(): Adds all elements from an iterable to the end of a list.
+
+
+insert(index, element): Inserts an item at a specific position.
+
+Removing Elements:
+
+
+remove(element): Removes the first instance of a specific value.
+
+
+pop([index]): Removes and returns the item at a given index or the last item if no index is specified.
+
+
+clear(): Deletes all items from the list.
+
+
+del: A statement used to delete items by index or slice.
+
+Organizing and Searching:
+
+
+sort(): Arranges list items in ascending or descending order.
+
+
+reverse(): Flips the order of elements in place.
+
+
+index(element): Finds the first index of a specific value.
+
+
+count(element): Returns the number of times an item appears in the list.
+
+Other Utility Methods:
+
+
+copy(): Creates a shallow copy of the list.
+
+
+enumerate(): Provides both index and value during iteration.
+
+
+zip(): Pairs elements from multiple lists together.
+
+
+map() and filter(): Used to apply a function to all items or filter items based on a condition.
+
+Python String Methods
+Strings in Python come with numerous methods for formatting, searching, and validating data:
+
+Case Conversion:
+
+
+lower() / upper(): Converts the entire string to lowercase or uppercase.
+
+
+capitalize(): Capitalizes only the first letter.
+
+
+title(): Capitalizes the start of every word.
+
+
+swapcase(): Inverts the case of all letters.
+
+Searching and Checking:
+
+
+find(sub) / rfind(sub): Locates the first or last index of a substring.
+
+
+startswith(sub) / endswith(sub): Checks if a string begins or ends with a specific value.
+
+
+Boolean Checks: Includes isalnum(), isalpha(), isdigit(), islower(), isupper(), and istitle() to verify string content types.
+
+Modification:
+
+
+strip() / lstrip() / rstrip(): Removes whitespace from both or specific sides of a string.
+
+
+replace(old, new): Swaps specified substrings for new ones.
+
+
+split(): Breaks a string into a list based on a separator.
+
+
+join(list): Connects list elements into a single string using a separator.
+
+Formatting and Padding:
+
+
+zfill(width): Pads the start of a string with zeros.
+
+
+center(width): Centers a string within a specified width.
+
+
+format(): Inserts values into a string placeholder.
