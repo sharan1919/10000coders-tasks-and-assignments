@@ -1,0 +1,45 @@
+## 1. Introduction to Python
+Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability, notably using significant whitespace. It is an interpreted language, meaning the code is executed line-by-line, which makes debugging much easier for beginners like us.
+
+**Key Features:**
+* **Simple Syntax:** It feels like writing English.
+* **Dynamically Typed:** We don't need to declare what kind of data a variable holds; Python figures it out at runtime.
+* **Interpreted:** No need for a separate compilation step before running the script.
+
+---
+
+## 2. Variables and Naming Conventions
+In Python, variables are reserved memory locations to store values. We don't use keywords like `var` or `int` to declare them; we just assign a value using `=`.
+
+### The Rules for Identifiers:
+* Names must start with a letter (a-z) or an underscore (`_`).
+* Names cannot start with a digit.
+* Only alphanumeric characters and underscores are allowed (`A-z`, `0-9`, `_`).
+* **Case Sensitivity:** `myValue` and `myvalue` are completely different variables.
+* **Reserved Words:** We cannot name variables `print`, `if`, `while`, or `class` because Python uses these for its own logic.
+
+---
+
+## 3. Data Types & the `type()` Function
+Python categorizes data into different types based on its nature. We use the built-in `type()` function to inspect the data type of any variable.
+
+| Data Type | Description | Example |
+| :--- | :--- | :--- |
+| **int** | Whole numbers without decimals | `age = 22` |
+| **float** | Numbers containing a decimal point | `price = 99.50` |
+| **str** | Textual data wrapped in quotes | `city = "Hyderabad"` |
+| **bool** | Logic values (True or False) | `is_valid = True` |
+
+---
+
+## 4. Input and Type Casting
+The `input()` function allows the program to take data from the user. 
+
+> **Important Observation:** The `input()` function always returns data as a **string (str)**. If we need to perform math, we must convert it.
+
+### Type Casting (Type Conversion)
+This is the process of converting one data type into another manually.
+* `int(x)`: Converts `x` to an integer.
+* `float(x)`: Converts `x` to a decimal number.
+* `str(x)`: Converts `x` to a string.
+
