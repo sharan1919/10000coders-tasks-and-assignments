@@ -1,0 +1,61 @@
+-- 1. Display all employees and their department names 
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+
+-- 2. Display all employees and show "No Department" if not assigned 
+SELECT e.emp_name, IFNULL(d.dept_name, 'No Department') AS department
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+
+-- 3. Find employees who do not belong to any department 
+SELECT e.emp_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+WHERE d.dept_id IS NULL;
+
+-- 4. Display all departments and the number of employees in each 
+SELECT d.dept_name, COUNT(e.emp_name) AS employee_count
+FROM departments d
+LEFT JOIN employees e ON d.dept_id = e.dept_id
+GROUP BY d.dept_name;
+
+-- 5. Display all employees and department name only if it is 'IT', otherwise NULL 
+SELECT e.emp_name, 
+       CASE WHEN d.dept_name = 'IT' THEN d.dept_name ELSE NULL END AS dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
+
+-- 6. Display only employees who belong to the 'HR' department 
+SELECT e.emp_name
+FROM employees e
+INNER JOIN departments d ON e.dept_id = d.dept_id
+WHERE d.dept_name = 'HR';
+
+-- 7. Display employee and department name, filtering for dept_id = 101 
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+WHERE d.dept_id = 101;
+
+-- 8. Display all departments that do not have any employees 
+SELECT d.dept_name
+FROM departments d
+LEFT JOIN employees e ON d.dept_id = e.dept_id
+WHERE e.emp_name IS NULL;
+
+-- 9. Display employee name and department name, sorted by department name 
+SELECT e.emp_name, d.dept_name
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id
+ORDER BY d.dept_name;
+
+-- 10. Display employee name, department name, and a "status" column 
+-- Status: "Assigned" if employee has a department, otherwise "Not Assigned"
+SELECT e.emp_name, d.dept_name,
+       CASE 
+           WHEN d.dept_name IS NOT NULL THEN 'Assigned'
+           ELSE 'Not Assigned'
+       END AS status
+FROM employees e
+LEFT JOIN departments d ON e.dept_id = d.dept_id;
