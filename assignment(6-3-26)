@@ -1,0 +1,83 @@
+# =========================================================
+# Assignment: Conditional Statements (Nested IF & ELIF)
+# Topic: Library Borrowing System
+# Batch: d11r | Instructor: Vamsi Enduri
+# =========================================================
+
+def calculate_borrowing_period(book_type, member_status):
+    """
+    Calculates the allowed borrowing period based on book type and membership.
+    
+    Rules:
+    - Reference Books: Only Staff can borrow (3 days). Others cannot.
+    - Regular Books: 
+        - Staff: 30 days
+        - Premium: 14 days
+        - Regular: 7 days
+    """
+    
+    # Normalize inputs to lowercase to handle variations like 'Staff' or 'STAFF'
+    book_type = book_type.lower().strip()
+    member_status = member_status.lower().strip()
+
+    # Define valid categories for error handling
+    valid_books = ['regular', 'reference']
+    valid_members = ['staff', 'premium', 'regular']
+
+    # 1. Input Validation (Error Handling)
+    if book_type not in valid_books or member_status not in valid_members:
+        return "Error: Invalid book type or member status entered."
+
+    # 2. Logic Implementation using Nested If and Elif
+    if book_type == "reference":
+        # Reference books have strict restrictions
+        if member_status == "staff":
+            return 3
+        else:
+            return "Policy: Reference books are restricted to Staff only."
+            
+    elif book_type == "regular":
+        # Borrowing period based on membership tier
+        if member_status == "staff":
+            return 30
+        elif member_status == "premium":
+            return 14
+        elif member_status == "regular":
+            return 7
+    
+    return "Error: Unable to determine borrowing period."
+
+# --- Test Suite / Example Usage ---
+
+def run_tests():
+    # Test cases represented as (book_type, member_status, expected_description)
+    test_cases = [
+        ("regular", "regular", "Regular Member / Regular Book"),
+        ("regular", "premium", "Premium Member / Regular Book"),
+        ("regular", "staff", "Staff Member / Regular Book"),
+        ("reference", "staff", "Staff Member / Reference Book"),
+        ("reference", "regular", "Regular Member / Reference Book (Should be denied)"),
+        ("sci-fi", "staff", "Invalid Book Type Check"),
+        ("regular", "guest", "Invalid Member Status Check")
+    ]
+
+    print(f"{'Book Type':<15} | {'Member':<10} | {'Result / Days'}")
+    print("-" * 55)
+
+    for b_type, m_status, desc in test_cases:
+        result = calculate_borrowing_period(b_type, m_status)
+        print(f"{b_type:<15} | {m_status:<10} | {result}")
+
+# Execute tests
+if __name__ == "__main__":
+    run_tests()
+
+# ---------------------------------------------------------
+# Self-Reflection / Logic Breakdown:
+# 1. Nested Logic: I used the outer 'if' to filter by book type first. 
+#    This makes the code cleaner because reference book rules are specific.
+# 2. Case Sensitivity: Added .lower() so the system doesn't crash 
+#    if a user types 'STAFF' instead of 'staff'.
+# 3. Validation: The inclusion of 'valid_books' lists prevents the code 
+#    from processing junk data.
+# ---------------------------------------------------------
